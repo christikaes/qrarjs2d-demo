@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/qrarjs@1.0.0/dist/qrar.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      #qrar2d {
+        float: left;
+      }
+
+      #panel {
+        height: 150px;
+        width: 150px;
+        background: lightblue;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="demos">
+      <div id="qrar2d">
+        <div id="panel">
+          Hello World!
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const $ = selector => {
+        return document.querySelector(selector);
+      };
+
+      // Example of using a panel element with QrAr2d
+      qrarjs.QrAr2d($('#qrar2d'), 10, $('#panel'));
+
+      // Play the message when the panel is clicked
+      $('#panel').addEventListener('click', () => {
+        alert('Hello there!');
+      });
+    </script>
+  </body>
+</html>
