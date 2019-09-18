@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>QrAr.js demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/95/three.min.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/MTLLoader.js"></script>
+    <script src="https://unpkg.com/qrarjs@1.0.0/dist/qrar.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      #qrar2d {
+        float: left;
+      }
+
+      #qrar3d {
+        float: left;
+        pointer-events: none;
+      }
+
+      #panel {
+        height: 150px;
+        width: 150px;
+        background: lightblue;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="demos">
+      <div id="qrar3d"></div>
+    </div>
+
+    <script>
+      const THREE = window.THREE;
+
+      const $ = selector => {
+        return document.querySelector(selector);
+      };
+
+      // Example of using a THREEjs model with QrAr3d
+      const mtlLoader = new THREE.MTLLoader();
+      const objLoader = new THREE.OBJLoader();
+      mtlLoader.setPath('/VR/');
+      // mtlLoader.load("r2d2.mtl", (materials) => {
+      //     materials.preload();
+      // objLoader.setMaterials(materials)
+      objLoader.load('/VR/Mug.obj', object => {
+        console.log(object);
+        qrarjs.QrAr3d(THREE, $('#qrar3d'), 100, object, 20);
+      });
+      // });
+    </script>
+  </body>
+</html>
