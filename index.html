@@ -75,6 +75,11 @@
   <body>
     <h1>QRARjs Demo!</h1>
     <div id="demos">
+      <div id="qrar2d">
+        <div id="panel">
+          Click Me!
+        </div>
+      </div>
       <div id="qrar3d"></div>
     </div>
     <div class="actions">
@@ -93,14 +98,22 @@
       // Example of using a THREEjs model with QrAr3d
       const mtlLoader = new THREE.MTLLoader();
       const objLoader = new THREE.OBJLoader();
-      mtlLoader.setPath('/VR/mug/');
+      mtlLoader.setPath('/VR/logo/');
       mtlLoader.load('obj.mtl', materials => {
         materials.preload();
         objLoader.setMaterials(materials);
-        objLoader.load('/VR/mug/tinker.obj', object => {
+        objLoader.load('/VR/logo/tinker.obj', object => {
           console.log(object);
           qrarjs.QrAr3d(THREE, $('#qrar3d'), 100, object, -0.5);
         });
+      });
+
+      // Example of using a panel element with QrAr2d
+      qrarjs.QrAr2d($('#qrar2d'), 100, $('#panel'));
+
+      // Play the message when the panel is clicked
+      $('#panel').addEventListener('click', () => {
+        alert('Hello World!');
       });
     </script>
   </body>
